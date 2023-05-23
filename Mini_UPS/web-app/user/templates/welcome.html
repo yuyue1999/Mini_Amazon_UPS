@@ -1,0 +1,18 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>mini-UPS by Joey Yu & David Yang</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.min.css' %}">
+  </head>
+  <body>
+  <div class="jumbotron">
+  <h1>Welcome to the mini United Parcel Service!</h1>
+  <p>Designed by David and Joey, Durham.</p>
+      <p>Please login to your own UPS account now!</p>
+      <img src = "{% static 'UPS.jpg' %}" width = "1000" height = "400" />
+  <p><a class="btn btn-primary btn-lg" href={% url 'user:login'%} role="button">Login</a></p>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,170 @@
+[
+  {
+      "model": "amazon.category",
+      "pk": 1,
+      "fields": {
+        "name": "Tea",
+        "slug": "tea"
+      }
+    },
+    {
+      "model": "amazon.category",
+      "pk": 2,
+      "fields": {
+        "name": "Coffee",
+        "slug": "coffee"
+      }
+    },
+  {
+    "model": "amazon.category",
+    "pk": 3,
+    "fields": {
+      "name": "Bread",
+      "slug": "bread"
+    }
+  },
+  {
+      "model": "amazon.product",
+      "pk": 1,
+      "fields": {
+        "id": "1",
+        "category": "1",
+        "slug":"green_tea",
+        "image":"/static/image/green tea.jpeg",
+        "description": "green tea",
+        "price": "6.5"
+      }
+    },
+    {
+      "model": "amazon.product",
+      "pk": 2,
+      "fields": {
+        "id": "2",
+        "category": "1",
+        "slug":"black_tea",
+        "image":"/static/image/black tea.jpeg",
+        "description": "black tea",
+        "price": "6.5"
+      }
+    },
+    {
+      "model": "amazon.product",
+      "pk": 3,
+      "fields": {
+        "id": "3",
+        "category": "1",
+        "slug":"milk_tea",
+        "image":"/static/image/pearl milk tea.jpeg",
+        "description": "milk tea",
+        "price": "6.5"
+      }
+    },
+    {
+      "model": "amazon.product",
+      "pk": 4,
+      "fields": {
+        "id": "4",
+        "category": "1",
+        "slug":"lemon_tea",
+        "image":"/static/image/lemon tea.jpeg",
+        "description": "lemon tea",
+        "price": "6.5"
+      }
+    },
+    {
+      "model": "amazon.product",
+      "pk": 5,
+      "fields": {
+        "id": "5",
+        "category": "1",
+        "slug":"matcha",
+        "image":"/static/image/matcha tea.jpeg",
+        "description": "matcha tea",
+        "price": "6.5"
+      }
+    },
+    {
+      "model": "amazon.product",
+      "pk": 6,
+      "fields": {
+        "id": "6",
+        "category": "2",
+        "slug":"cappuccino",
+        "image":"/static/image/cappuccino.jpeg",
+        "description": "Cappuccino",
+        "price": "7"
+      }
+    },
+    {
+      "model": "amazon.product",
+      "pk": 7,
+      "fields": {
+        "id": "7",
+        "category": "2",
+        "slug":"flat_white",
+        "image":"/static/image/flat white.jpeg",
+        "description": "Flat white",
+        "price": "7.5"
+      }
+    },
+    {
+      "model": "amazon.product",
+      "pk": 8,
+      "fields": {
+        "id": "8",
+        "category": "2",
+        "slug":"latte",
+        "image":"/static/image/latte.jpeg",
+        "description": "Latte",
+        "price": "5.5"
+      }
+    },
+    {
+      "model": "amazon.product",
+      "pk": 9,
+      "fields": {
+        "id": "9",
+        "category": "2",
+        "slug":"mocha",
+        "image":"/static/image/mocha.jpeg",
+        "description": "Mocha",
+        "price": "5.5"
+      }
+    },
+    {
+      "model": "amazon.product",
+      "pk": 10,
+      "fields": {
+        "id": "10",
+        "category": "3",
+        "slug":"sandwich",
+        "image":"/static/image/sandwich bread.jpeg",
+        "description": "Sandwich bread",
+        "price": "3"
+      }
+    },
+    {
+      "model": "amazon.product",
+      "pk": 11,
+      "fields": {
+        "id": "11",
+        "category": "3",
+        "slug":"five_grain",
+        "image":"/static/image/five grain bread.jpeg",
+        "description": "Five grain bread",
+        "price": "6"
+      }
+    },
+    {
+      "model": "amazon.product",
+      "pk": 12,
+      "fields": {
+        "id": "12",
+        "category": "3",
+        "slug":"whole_grain",
+        "image":"/static/image/whole grain bread.jpeg",
+        "description": "Whole grain bread",
+        "price": "7"
+      }
+    }
+]

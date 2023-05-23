@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.min.css' %}">
+    <style>
+        .navbar {
+            border-radius: 0;
+        }
+        .center {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+{% if message %}
+            <div class="alert alert-warning">{{ message }}</div>
+          {% endif %}
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href={% url 'user:main'%}> Main Page of United Parcel Service </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/list_package/">list your packages</a></li>	
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">{{ request.session.info.name }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/view_info/">View Info</a></li>	
+                        <li><a href="/edit_info/">Edit Info</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/logout/">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<img src = "{% static 'box.png' %}" width = "600" height = "300" class="center"/>
+
+
+
+<form method="post" novalidate >
+    {% csrf_token %}
+    <table width="600" border="0" class="table">
+        <tr>
+          <td><h5>Tracking Number:</h5></td> 
+          <td><input type="text" name="package_id"/></td>
+        </tr>
+        {% if error_message %}
+        <tr>
+          <td colspan="2" align="center">
+            <p style="color: red;">{{ error_message }}</p>
+          </td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td colspan="2" align="center">
+            <input type="submit" value="Search"/>
+          </td>
+        </tr>
+    </table>
+</form>
+
+
+
+
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+{% block js %}{% endblock %}
+</body>
+</html>

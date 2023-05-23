@@ -1,0 +1,6 @@
+1. When we change the user address, while the status of the package is not out of delivering and delivered, the user would receive a email.
+2. When the package is delivered, the user would immediately receive a email from cpp backend;
+3. When the package is delivered, the user can write feedback about the package, and the feedback would be attach in the email.
+4. We use threadpool to achieve multi-thread programming.
+5. We use the combo :std::vector<std::thread> threads; threads.emplace_back(function,parameter); for (auto& t : threads) {t.join();} to achieve the communication between
+different threads;

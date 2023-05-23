@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User Info</title>
+    <style>
+        .center {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <img src = "{% static 'address.png' %}" width = "400" height = "200" />
+        <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Please edit your package address</h3>
+            </div>
+            <div class="panel-body">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+            
+                    <div class="form-group">
+                        <label for="{{ form.userx.id_for_label }}">{{ form.userx.label }}</label>
+                        {{ form.userx }}
+                        <span style="color: red;">{{ form.userx.errors.0 }}</span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ form.usery.id_for_label }}">{{ form.usery.label }}</label>
+                        {{ form.usery }}
+                        <span style="color: red;">{{ form.usery.errors.0 }}</span>
+                    </div>
+                    
+                    {% if error_message %}
+                        <tr>
+                            <td colspan="2" align="center">
+                                <p style="color: red;">{{ error_message }}</p>
+                            </td>
+                        </tr>
+                    {% endif %}
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+                    
+
+                    
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <a class="btn btn-primary btn-block" href="{% url 'user:list_package' %}" role="button">Package List</a>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary btn-block" href="{% url 'user:track_package' %}" role="button">Searching Page</a>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-primary btn-block" href="{% url 'user:main' %}" role="button">Main Page</a>
+        </div>
+    </div>
+
+</body>
+</html>

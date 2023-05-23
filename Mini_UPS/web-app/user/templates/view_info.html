@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Information</title>
+    <style>
+      .center {
+          display: block;
+          margin: 0 auto;
+      }
+  </style>
+</head>
+<body>
+<img src = "{% static 'plane.jpeg' %}" width = "500" height = "200" />
+<ul class="list-group">
+  <li class="list-group-item">User Id:{{ user.id}}</li>
+  <li class="list-group-item">Username:{{ user.username }}</li>
+  <li class="list-group-item">User Email:{{ user.email }}</li>
+</ul>
+
+
+<a class="btn btn-primary" href={% url 'user:main'%} role="button">Back to Main Page</a>
+
+</body>
+</html>

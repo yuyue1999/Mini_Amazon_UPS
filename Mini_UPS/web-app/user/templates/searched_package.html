@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.min.css' %}">
+    <style>
+        .navbar {
+            border-radius: 0;
+        }
+        .center {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+{% if message %}
+            <div class="alert alert-warning">{{ message }}</div>
+          {% endif %}
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href={% url 'user:main'%}> Main Page of United Parcel Service </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/track_package/">track your package</a></li>	
+                <li><a href="/{{temppackage.packageid}}/edit_address/">change your package address</a></li>
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">{{ request.session.info.name }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/view_info/">View Info</a></li>	
+                        <li><a href="/edit_info/">Edit Info</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/logout/">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
+            Your packages tracked by your entered packageID
+        </div>
+
+        <!-- Table -->
+        <table class="table table-bordered" style="text-align:center">
+            <thead>
+            <tr>
+                <th>Package ID</th>
+                <th style="text-align:center">Status</th>
+                <th style="text-align:center">Destination x</th>
+                <th style="text-align:center">Destination y</th>
+                <th style="text-align:center">Feedback</th>
+                <th style="text-align:center">Product ID</th>
+                <th style="text-align:center">Product Description</th>
+                <th style="text-align:center">Product Count</th>
+
+
+            </tr>
+            </thead>
+            
+            <tbody>
+                {% for tempproduct in tempproducts %}
+                <tr>
+                  {% if forloop.first %}
+                  <th rowspan="{{ tempproducts.count }}">{{ temppackage.packageid }}</th>
+                  <td rowspan="{{ tempproducts.count }}">{{ temppackage.status }}</td>
+                  <td rowspan="{{ tempproducts.count }}">{{ temppackage.userx }}</td>
+                  <td rowspan="{{ tempproducts.count }}">{{ temppackage.usery }}</td>
+                  <td rowspan="{{ tempproducts.count }}">{{ temppackage.feedback }}
+                  {% endif %}
+                  <td style="text-align:center">{{ tempproduct.productid }}</td>
+                  <td style="text-align:center">{{ tempproduct.description }}</td>
+                  <td style="text-align:center">{{ tempproduct.count }}</td>
+
+                </tr>
+                {% endfor %}
+              </tbody>
+              
+
+        </table>
+    </div>
+
+    <p><a class="btn btn-primary btn-lg" href="/{{temppackage.packageid}}/edit_address/" role="button">Change address</a></p>
+    <img src = "{% static 'ps.jpeg' %}" width = "900" height = "240" class="center"/>
+    
+
+    <div class="clearfix">
+        <ul class="pagination">
+            {{ page_string }}
+        </ul>
+
+    </div>
+
+</div>
+
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+{% block js %}{% endblock %}
+</body>
+</html>
