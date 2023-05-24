@@ -1,0 +1,7 @@
+1. We enable the user-friendly shopping cart functions, which allow customers to add and remove products in the cart and can maintain the cart information of certain users until they place the orders.
+2. We add the category selection function, image and description of each product, which helps the users better figure out their targetted items.
+3. We add sending email function, which can notify the users of their order status.
+4. We add the login and register functions, which means our mini_amazon website will only allow authorized users to place order.
+5. We add view order function, which will list all orders placed by the current users.
+6. We implemented reverse proxy. In the projects we realized before, most of them can only be visited through localhost. However, we think this is not reasonable as we want our Amazon can be visited by users from anywhere in the world. Therefore, we realized a reverse proxy with Nginx. For our Amazon, users can easily visit http://vcm-32242.vm.duke.edu:8000/ to place their orders, and check order status.
+7. We implemented storage selction function. We would like minimize the distance from the storage to the user's location. Therefore, we realized a function that can buy orders to the closest storage of the user.

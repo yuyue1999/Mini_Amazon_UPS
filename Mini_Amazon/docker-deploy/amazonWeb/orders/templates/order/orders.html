@@ -1,0 +1,61 @@
+{% extends "amazon/base.html" %}
+{% block content %}
+
+<div class="container">
+
+    <div class="orderView">
+        <div class="orderView-product">
+            <h2>
+                All your confirmed orders:
+            </h2>
+            <div class"orderView body">
+                    <table class="table table-striped table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <!-- tr表示table row， 指一行 -->
+                                <!-- th相当于是列表的头，告知这一列是什么元素 -->
+                                <th>Order ID</th>
+                                <th>User Name</th>
+                                <th>Address</th>
+                                <th>Package Status</th>
+                                <th>Product ID</th>
+                                <th>Product Description</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>UPS ID</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for order in order_list %}
+                            <tr>
+                                <td>{{ order.id }}</td>
+                                <td>{{ order.owner.username }}</td>
+                                <td>{{ order.addr_x }}, {{ order.addr_y }}</td>
+                                <td>{{ order.status }}</td>
+                                    <td>{% for item in order.items.all %}
+                                        [{{ item.product.id }}]
+                                        {%endfor%}
+                                    </td>
+                                    <td>{% for item in order.items.all %}
+                                        [{{ item.product.name}}]   
+                                        {%endfor%}
+                                    </td>
+                                    <td>{% for item in order.items.all %}
+                                        [{{ item.quantity }}]  
+                                        {%endfor%}
+                                    </td>
+                                <td>{{ order.price }}</td>
+                                <td>{{ order.ups_id }}</td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                            
+
+                    </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

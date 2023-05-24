@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}mini Amazon{% endblock %}</title>
+  <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+  <div id="header">
+    <a href="/" class="logo">mini Amazon</a>
+  </div>
+  <div id="subheader">
+    {% if user.is_authenticated %}
+    <ul>
+      <li><a href="{% url 'product_list' %}">Home</a></li>
+      <li><a class="active" href="{% url 'users:profile' %}">User Profile</a></li>
+      <li><a href="{% url 'orders:view' %}">Your Order</a></li>
+      <li><a href="{% url 'users:logout' %}">Log out</a></li>
+      <li style="float:right">
+        <div class="cart">
+        {% with total_items=cart|length %}
+            {% if cart|length > 0 %}
+              Your cart: 
+              <a href="{% url "cart:cart_detail" %}">
+                {{ total_items }} item{{ total_items|pluralize }},
+                ${{ cart.get_total_price }}
+              </a>
+            {% else %}
+              Empty Cart
+            {% endif %}
+          {% endwith %}
+      </div></li>
+    </ul>
+
+    {% else %}
+    <div class = "users">
+      <ul>
+      <li><a href="{% url 'users:login' %}">Log in</a><li>
+      <li><a href="{% url 'users:register' %}">Register</a><li>
+      </ul>
+    </div>
+    {% endif %}
+
+  </div>
+  <div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>
