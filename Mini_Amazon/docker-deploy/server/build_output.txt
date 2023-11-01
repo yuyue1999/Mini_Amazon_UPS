@@ -1,0 +1,6 @@
+In file included from server.hpp:26,
+                 from server.cpp:2:
+frontend_handle.hpp: In function ‘int Amazon_connect_frontend(int)’:
+frontend_handle.hpp:106:1: warning: no return statement in function returning non-void [-Wreturn-type]
+  106 | }
+      | ^

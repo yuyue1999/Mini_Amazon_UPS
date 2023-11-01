@@ -1,0 +1,38 @@
+Front End:
+1. login required: 
+Since we want to only allow the authorized login user to place orders, we add @login_required for some specifc functions like view orders and place orders.
+2. cart_add and cart_remove: 
+Since the customers may want to add or remove some products when they enter the shopping cart, we allow the cart_add and remove function for user-frinedly UI.
+3. cart session: 
+Since we hope to maintain the items added to the shopping cart for the customers longer, we used Django's session framework to store the information of their shopping carts.
+4. send email: 
+Since the users may not aware whether they have successfully placed order or not, we send email to them to notify the success of placing order.
+5. SQL Injection Problem: 
+There may possibly exist unsolved SQL injection. It may be a problem because of our incorrect operations. It may also be the vulnerability of Django itself. Although we didn’t do this part, we think we can design the SQL query better to avoid the SQL injection problem. 
+
+Backend:
+1.Data race
+    In this project, we use lock_guard to guarantee that the mutex lock is freed correctly. Besides, we use mutilple lock-free data structures like send_acks, seqnum_to_orderinfo. They don't need a lock when changing their data. We save computing time and resources through these.
+
+2.Multi-thread problem
+    In this project, we use std::thread to allow our programs can handle keeping sending to world, keeping sending to UPS, keeping receiving from world, keeping receiving from UPS, and keeping interacting with the frontend correctly. Only receiving-related threads will keep running. For sending-related threads, if they met with problems, they can exit without interfering other threads.
+
+    Besides, we mostly use parameter copy to allow our thread can run detachedly. If we use reference or address, we may come accross problem regarding resources realeased.
+
+3.Message recv and send
+    In this project, we use try-catch pairs to handle the possible problems regarding sending and receiving. We can catch possible errors during the process, which make our server robust.
+
+4.Ack handling
+    In this project, we need to handle two conditions regarding acks. 1. If we received related ack num of our sent messages, we will stop sending. Otherwise, we would keep sending until receive ack. 2. If we receive commands from world or UPS multiple times, we should only handle once, this is required by the idempotence. For the repeated received commands, we would only send back ack.
+
+5.Database
+    For updating the status of order from the backend, we use FOR UPDATE in SELECT command to realize a row-level lock, which can guarantee that our info within the database can be updated correctly.
+
+6.Numerical problem
+    According to our protocol, we use int32 to represent the x&y of user's deliverylocation. However, if user send some location bigger than the range of int32, it may cause trouble. Although following our protocol, user should not have a location larger than int32.
+
+7.UPS corruption
+    During our test, we found if the UPS corrupted, we can not re-link to the new incoming UPS. However, we assume that is correctly expected. As we cannot differentiate whether the new incoming UPS is identically the same as the original one, and we don't want to send messages belongs to the original UPS to the new UPS. We think as our Amazon would continue running, this is a resonable design.
+
+8.World corruption
+    In this project, we assume that the world will continue running correctly, as its behavior is expected according to the specification. However, this is not predictable, as we don't have permission to world's codes.
