@@ -1,8 +1,15 @@
-About how to run this project:
-1. You should run the world simulator: you can check this page to download and use docker to run it. [https://github.com/yunjingliu96/world_simulator_exec]
-2. Next, open Amazon part, run ./server. And then use docker to run UPS part. 
+# Mini Amazon & UPS
 
-How to use protobuf
+Here's a realization of Mini Amazon and UPS based on C++, Python, and Django.
+
+## Running
+
+1. You should run the world simulator: you can check this page to download and use docker to run it. [https://github.com/yunjingliu96/world_simulator_exec]
+2. Open Amazon folder, and run `docker compose up`
+3. Open UPS folder, and run `docker compose up`
+4. Open mapped websites and enjoy!
+
+## Prerequisite (Protobuf Installation)
 
 1. Download source code from github using this link: protobuf-cpp-3.20.0.zip. I use version 3.20.0(not the latest one.)
 
@@ -16,4 +23,4 @@ How to use protobuf
 
 6. compiling: protoc -I=$SRC_DIR --cpp_out=$DST_DIR $SRC_DIR/addressbook.proto
 
-7.g++ -o writeExample writeExample.cpp addressbook.pb.cc `pkg-config --cflags --libs protobuf` 
+7. g++ -o writeExample writeExample.cpp addressbook.pb.cc `pkg-config --cflags --libs protobuf` 
